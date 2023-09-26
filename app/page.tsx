@@ -1,4 +1,5 @@
 'use client';
+import Chat from '@/components/Chat';
 import { useState } from 'react';
 
 export default function Home() {
@@ -17,5 +18,9 @@ export default function Home() {
     setInputValue('');
   };
 
-  return <main></main>;
+  return (
+    <main>
+      <Chat chatLog={chatLog} />
+    </main>
+  );
 }

@@ -24,11 +24,7 @@ export default function Home() {
   };
 
   const sendMessage = async (message: string) => {
-    const url = 'https://api.pawan.krd/v1/chat/completions';
-    const headers = {
-      Authorization: `Bearer ${process.env.NEXT_PUBLIC_OPENAI_API_KEY}`,
-      'Content-type': 'application/json',
-    };
+    const url = '/api/chat';
     const data = {
       model: 'pai-001-light-beta',
       messages: [
@@ -42,7 +38,7 @@ export default function Home() {
     setIsLoading(true);
 
     try {
-      const response = await axios.post(url, data, { headers });
+      const response = await axios.post(url, data);
       setChatLog(prevChatLog => [
         ...prevChatLog,
         {

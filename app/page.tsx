@@ -2,7 +2,7 @@
 import Chat from '@/components/Chat';
 import ChatForm from '@/components/ChatForm';
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
   const [inputValue, setInputValue] = useState('');
@@ -10,15 +10,17 @@ export default function Home() {
     []
   );
   const [isLoading, setIsLoading] = useState(false);
+  const chatRef = useRef<HTMLDivElement>(null);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const tempInputValue = inputValue;
+    setInputValue('');
     setChatLog(prevChatLog => [
       ...prevChatLog,
-      { type: 'user', message: inputValue },
+      { type: 'user', message: tempInputValue },
     ]);
-    await sendMessage(inputValue);
-    setInputValue('');
+    await sendMessage(tempInputValue);
   };
 
   const sendMessage = async (message: string) => {
@@ -41,10 +43,17 @@ export default function Home() {
 
     try {
       const response = await axios.post(url, data, { headers });
-      console.log(response);
       setChatLog(prevChatLog => [
         ...prevChatLog,
-        { type: 'bot', message: response.data.choices[0].message.content },
+        {
+          type: 'bot',
+          message:
+            response.data.choices[0].message.content[
+              response.data.choices[0].message.content.length - 1
+            ] === '|'
+              ? response.data.choices[0].message.content.slice(0, -5)
+              : response.data.choices[0].message.content,
+        },
       ]);
       setIsLoading(false);
     } catch (error) {
@@ -53,16 +62,20 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    }
+  }, [isLoading]);
+
   return (
-    <main className="bg-gray-900 w-full h-full">
-      <div className="flex flex-col h-screen mx-auto max-w-[900px]">
-        <Chat chatLog={chatLog} />
-        <ChatForm
-          inputValue={inputValue}
-          setInputValue={setInputValue}
-          handleSubmit={handleSubmit}
-        />
-      </div>
+    <main className="flex flex-col h-screen mx-auto max-w-[900px]">
+      <Chat chatLog={chatLog} isLoading={isLoading} chatRef={chatRef} />
+      <ChatForm
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        handleSubmit={handleSubmit}
+      />
     </main>
   );
 }

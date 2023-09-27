@@ -1,16 +1,7 @@
-import { MutableRefObject, RefObject } from 'react';
 import LoadingAnimation from './LoadingAnimation';
+import { ChatProps } from '@/typings';
 
-type Props = {
-  chatLog: {
-    type: string;
-    message: string;
-  }[];
-  isLoading: boolean;
-  chatRef: RefObject<HTMLDivElement>;
-};
-
-const Chat = ({ chatLog, isLoading, chatRef }: Props) => {
+const Chat = ({ chatLog, isLoading, chatRef }: ChatProps) => {
   return (
     <>
       <h1 className="bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text text-center py-3 font-bold text-6xl">

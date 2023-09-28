@@ -28,7 +28,11 @@ const ChatForm = ({
           value={handleSubmitProps.inputValue}
           onChange={e => handleSubmitProps.setInputValue(e.target.value)}
         />
-        <button className={styles.sendButton} type="submit">
+        <button
+          disabled={!handleSubmitProps.inputValue}
+          className={styles.sendButton}
+          type="submit"
+        >
           Send
         </button>
       </div>

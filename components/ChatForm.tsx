@@ -1,5 +1,6 @@
 import { HandleSubmitPropsWithoutEvent } from '@/typings';
 import { handleSubmit } from '@/utils/functions';
+import styles from '@/styles/ChatForm.module.css';
 
 const ChatForm = ({
   handleSubmitProps,
@@ -17,20 +18,17 @@ const ChatForm = ({
           handleSubmitProps.setIsLoading
         )
       }
-      className="flex-none p-6"
+      className={styles.chatForm}
     >
-      <div className="flex rounded-lg border border-gray-700 bg-gray-800">
+      <div className={styles.inputContainer}>
         <input
-          className="flex-grow px-4 py-2 bg-transparent text-white focus:outline-none"
+          className={styles.input}
           type="text"
           placeholder="Type your message..."
           value={handleSubmitProps.inputValue}
           onChange={e => handleSubmitProps.setInputValue(e.target.value)}
         />
-        <button
-          className="bg-purple-500 rounded-lg px-4 py-2 text-white font-semibold focus:outline-none hover:bg-purple-600 transition-colors duraton-300"
-          type="submit"
-        >
+        <button className={styles.sendButton} type="submit">
           Send
         </button>
       </div>

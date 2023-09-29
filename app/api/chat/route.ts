@@ -8,10 +8,8 @@ export async function POST(request: NextRequest) {
   try {
     if (process.env.PALM_API_KEY) {
       const { query } = await request.json();
-      console.log(query);
       let bot = new PaLM(process.env.PALM_API_KEY);
       const answer = await bot.ask(query);
-      console.log(answer);
       return NextResponse.json(answer, { status: 200 });
     } else {
       return NextResponse.json(

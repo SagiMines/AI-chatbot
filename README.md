@@ -1,37 +1,83 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AI Chatbot
+
+<div align='center'>
+<a href="https://ai-chatbot-five-livid.vercel.app/">
+<img src="https://lh3.googleusercontent.com/pw/ADCreHfBblVQCm42xnXIYQtWDvmfTPKRhQQEsib5YZBDIKfCJzqCt5iThkqMfQu21KHkILoEMBLa0JX5ydu-DmkRyB-VnHp3FdsBkeoy7zYto9WF8g2b4Ob2FRFJ2Viwdol9a6g9hlckNpeBp_NZ8Qhx3xiT=w380-h75-s-no?authuser=3"/>
+</a>
+</div>
+
+Welcome to AI Chatbot, an open-source web application that provides you with the ability to engage in conversations with a powerful AI chatbot, equipped with vast data capabilities, thanks to Google's PaLM 2 API. This project is developed using Next.js 13, enabling seamless integration with the PaLM 2 API. The API calls are made possible through Next.js serverless API routes and the [palm-api package](https://github.com/EvanZhouDev/palm-api).
+
+#### **[Live Demo](https://ai-chatbot-five-livid.vercel.app/)**
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Technology Stack](#technology-stack)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Environment Variable](#environment-variable)
+- [Usage](#usage)
+
+## Overview
+
+AI Chatbot leverages Google's PaLM 2 API to provide users with a sophisticated conversational experience. Engage in discussions, ask questions, and explore the AI's vast knowledge base.
+
+### Technology Stack
+
+- **Frontend:** AI Chatbot is developed using Next.js 13, providing a responsive and dynamic user interface for interacting with the AI.
+
+- **API Integration:** The project relies on Next.js serverless API routes to seamlessly connect with Google's PaLM 2 API, enhancing chatbot capabilities.
+
+- **PaLM 2 API:** Google's PaLM 2 API is utilized for natural language processing and providing insightful responses to user queries.
+
+### Features
+
+- **Conversational AI:** Engage in conversations with a highly capable AI chatbot powered by PaLM 2.
+
+- **Vast Data Capabilities:** Leverage the AI's vast knowledge base to ask questions and receive informative answers.
 
 ## Getting Started
 
-First, run the development server:
+Use the [Live Demo](https://ai-chatbot-five-livid.vercel.app/)
+
+**Or, install locally:**
+
+To set up AI Chatbot locally or deploy a similar platform, follow these steps:
+
+1. Clone this repository to your local machine.
+
+```bash
+git clone https://github.com/SagiMines/ai-chatbot.git
+cd ai-chatbot
+```
+
+2. Install the necessary dependencies.
+
+```bash
+npm install
+```
+
+3. Configure your environment variable for API access using - [Environment Variable Guidence](#environment-variable).
+
+4. Run the application locally for development.
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Environment Variable
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run this project, you will need to add an `.env.local` file to the root of the project with the following environment variable included:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+`PALM_API_KEY` - Your PaLM 2 API key (get yours [here](https://makersuite.google.com/app/apikey)).
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+Once AI Chatbot is set up, users can:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Start conversations with the AI chatbot.
+- Ask questions and receive informative responses based on the AI's vast data capabilities.
+- Explore the chatbot's knowledge base for various topics and queries.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# ai-chatbot
+Engage in insightful conversations with AI Chatbot!

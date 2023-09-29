@@ -1,20 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
-import axios from 'axios';
-
+import PaLM from 'palm-api';
 /* 
-API Call to 'https://api.pawan.krd/v1' ChatGPT alternative 
-AI api to get the answers.
+API Call to PaLM API with the use of the 'palm-api' package 
+to get the answers.
 */
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const url = 'https://api.pawan.krd/v1/chat/completions';
-    const headers = {
-      Authorization: `Bearer ${process.env.CHATBOT_API_KEY}`,
-      'Content-type': 'application/json',
-    };
-    const ApiResponse = await axios.post(url, body, { headers });
-    return NextResponse.json(ApiResponse.data, { status: 200 });
+    if (process.env.PALM_API_KEY) {
+      const { query } = await request.json();
+      console.log(query);
+      let bot = new PaLM(process.env.PALM_API_KEY);
+      const answer = await bot.ask(query);
+      console.log(answer);
+      return NextResponse.json(answer, { status: 200 });
+    } else {
+      return NextResponse.json(
+        { message: 'No API key was provided.' },
+        { status: 500 }
+      );
+    }
   } catch (error) {
     console.log(error);
     return NextResponse.json(

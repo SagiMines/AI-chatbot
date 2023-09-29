@@ -31,13 +31,7 @@ and updates the chat log.
 const sendMessage: SendMessage = async (message, setIsLoading, setChatLog) => {
   const url = '/api/chat';
   const data = {
-    model: 'pai-001-light-beta',
-    messages: [
-      {
-        role: 'user',
-        content: message,
-      },
-    ],
+    query: message,
   };
 
   setIsLoading(true);
@@ -48,12 +42,7 @@ const sendMessage: SendMessage = async (message, setIsLoading, setChatLog) => {
       ...prevChatLog,
       {
         type: 'bot',
-        message:
-          response.data.choices[0].message.content[
-            response.data.choices[0].message.content.length - 1
-          ] === '|'
-            ? response.data.choices[0].message.content.slice(0, -5)
-            : response.data.choices[0].message.content,
+        message: response.data,
       },
     ]);
     setIsLoading(false);

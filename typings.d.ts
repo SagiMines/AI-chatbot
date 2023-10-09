@@ -1,6 +1,8 @@
 /**         TYPES           **/
 
-type HandleSubmitEvent = React.FormEvent<HTMLFormElement>;
+type HandleSubmitEvent =
+  | React.FormEvent<HTMLFormElement>
+  | React.KeyboardEvent<HTMLElement>;
 
 export type ChatLog = {
   type: string;
@@ -21,6 +23,14 @@ export type SendMessage = (
   setChatLog: Dispatch<SetStateAction<ChatLog>>
 ) => Promise<void>;
 
+export type OnPressEnter = (
+  event: React.KeyboardEvent<HTMLElement>,
+  inputValue: string,
+  setInputValue: Dispatch<SetStateAction<string>>,
+  setChatLog: Dispatch<SetStateAction<ChatLog>>,
+  sendMessage: (message: string) => Promise<void>
+) => void;
+
 /**         INTERFACES           **/
 
 export interface HandleSubmitPropsWithoutEvent {
@@ -28,6 +38,7 @@ export interface HandleSubmitPropsWithoutEvent {
   setInputValue: Dispatch<SetStateAction<string>>;
   setChatLog: Dispatch<SetStateAction<ChatLog>>;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
+  textareaRef: RefObject<HTMLTextAreaElement>;
 }
 export interface HandleSubmitProps extends HandleSubmitPropsWithoutEvent {
   event: HandleSubmitEvent;

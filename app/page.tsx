@@ -14,13 +14,21 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   // Reference to the chat div so that the scrollbar would always display the newest message
   const chatRef = useRef<HTMLDivElement>(null);
+  // Reference to the textarea element in the ChatForm component
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  // When the loading message indicator changes the scrollbar slides to the bottom
   useEffect(() => {
+    // When an answer is generated
     if (chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
-  }, [isLoading]);
+    // When input is entered
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height =
+        textareaRef.current.scrollHeight + 'px';
+    }
+  }, [isLoading, inputValue]);
 
   return (
     <main>
@@ -31,6 +39,7 @@ export default function Home() {
           setInputValue,
           setChatLog,
           setIsLoading,
+          textareaRef,
         }}
       />
     </main>

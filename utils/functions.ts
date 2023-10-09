@@ -1,4 +1,4 @@
-import { ChatLog, HandleSubmit, SendMessage } from '@/typings';
+import { ChatLog, HandleSubmit, OnPressEnter, SendMessage } from '@/typings';
 import axios from 'axios';
 
 /*
@@ -49,5 +49,21 @@ const sendMessage: SendMessage = async (message, setIsLoading, setChatLog) => {
   } catch (error) {
     setIsLoading(false);
     console.log(error);
+  }
+};
+
+/* 
+Checks if the key that was press is 'Enter', if it is then the textarea
+will submit.
+*/
+export const onPressEnter: OnPressEnter = (
+  e,
+  inputValue,
+  setInputValue,
+  setChatLog,
+  setIsLoading
+) => {
+  if (e.key === 'Enter' && e.shiftKey === false) {
+    handleSubmit(e, inputValue, setInputValue, setChatLog, setIsLoading);
   }
 };

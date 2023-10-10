@@ -3,18 +3,8 @@
 @tailwind utilities;
 
 @layer utilities {
-  .min-safe-h-screen {
-    /* equivalent to 100dvh in major browsers */
-    min-height: calc(
-      100vh - env(safe-area-inset-bottom, 0) - env(safe-area-inset-top, 0)
-    );
-  }
-}
-
-@supports (-webkit-touch-callout: none) {
-  .min-safe-h-screen {
-    /* for ios safari 15, safe-area-inset-bottom is 0, so a special fix apply here */
-    min-height: -webkit-fill-available;
+  .h-screen-mobile-fix {
+    height: 100svh;
   }
 }
 
@@ -23,7 +13,7 @@ html {
 }
 
 main {
-  @apply flex flex-col h-screen min-safe-h-screen mx-auto max-w-[900px];
+  @apply flex flex-col h-screen-mobile-fix mx-auto max-w-[900px];
 }
 
 ::-webkit-scrollbar {

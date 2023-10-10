@@ -6,8 +6,7 @@ export const metadata: Metadata = {
   description: 'Your Personal Chatbot Assistant',
   viewport: {
     width: 'device-width',
-    initialScale: 1,
-    viewportFit: 'cover',
+    userScalable: false,
   },
 };
 

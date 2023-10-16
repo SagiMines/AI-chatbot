@@ -45,10 +45,7 @@ export interface HandleSubmitProps extends HandleSubmitPropsWithoutEvent {
 }
 
 export interface ChatProps {
-  chatLog: {
-    type: string;
-    message: string;
-  }[];
+  chatLog: ChatLog;
   isLoading: boolean;
   chatRef: RefObject<HTMLDivElement>;
 }

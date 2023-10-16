@@ -47,6 +47,13 @@ const sendMessage: SendMessage = async (message, setIsLoading, setChatLog) => {
     ]);
     setIsLoading(false);
   } catch (error) {
+    setChatLog((prevChatLog: ChatLog) => [
+      ...prevChatLog,
+      {
+        type: 'bot',
+        message: `As a language model, I'm not able to assist you with that.`,
+      },
+    ]);
     setIsLoading(false);
     console.log(error);
   }
